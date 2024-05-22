@@ -45,6 +45,6 @@ public sealed class InkGame : Game
 
 		// TODO: Add your drawing code here
 
-		// base.Draw(gameTime);
+		base.Draw(gameTime);
 	}
 }
