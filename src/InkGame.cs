@@ -1,26 +1,24 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace ink;
-public class Game1 : Game
+namespace Ink;
+public sealed class InkGame : Game
 {
 	private GraphicsDeviceManager _graphics;
 	private SpriteBatch _spriteBatch;
 
-	public Game1()
+
+	public InkGame()
 	{
 		_graphics = new GraphicsDeviceManager(this);
 		Content.RootDirectory = "Content";
 		IsMouseVisible = true;
 	}
 
-	protected override void Initialize()
-	{
-		// TODO: Add your initialization logic here
+	protected override void Initialize() => base.Initialize();
 
-		base.Initialize();
-	}
 
 	protected override void LoadContent()
 	{
@@ -31,20 +29,22 @@ public class Game1 : Game
 
 	protected override void Update(GameTime gameTime)
 	{
-		if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-			Exit();
-
 		// TODO: Add your update logic here
-
+		this.ProcessInput();
 		base.Update(gameTime);
+	}
+	private void ProcessInput()
+	{
+		if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+			this.Exit();
 	}
 
 	protected override void Draw(GameTime gameTime)
 	{
-		GraphicsDevice.Clear(Color.CornflowerBlue);
+		GraphicsDevice.Clear(Color.Pink);
 
 		// TODO: Add your drawing code here
 
-		base.Draw(gameTime);
+		// base.Draw(gameTime);
 	}
 }
